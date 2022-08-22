@@ -91,9 +91,9 @@ params_RF = {
     'max_depth' : [None, 1, 2, 3, 4, 5, 6]
 }
 params_GB = {
-    'loss' : ['log_loss', 'deviance', 'exponential'],
+    'loss' : ['log_loss', 'exponential'],
     'learning_rate':[0.05, 0.075, 0.1],
-    'criterion' : ['friedman_mse', 'squared_error', 'mse']
+    'criterion' : ['friedman_mse', 'squared_error', 'squared_error']
 }
 params_SVC = {
     'kernel' : ['linear', 'poly', 'rbf', 'sigmoid'],
@@ -102,11 +102,11 @@ params_SVC = {
 
 # modèles à tester
 models_Selected_feats = [
-    GridSearchCV(estimator=LogisticRegression(), param_grid=params_LR, n_jobs=-1, cv=5, scoring=f1_score, verbose=0).fit(X_train, y_train).best_estimator_,
-    GridSearchCV(estimator=KNeighborsClassifier(), param_grid=params_KNN, n_jobs=-1, cv=5, scoring=f1_score, verbose=0).fit(X_train, y_train).best_estimator_,
-   #GridSearchCV(estimator=RandomForestClassifier(), param_grid=params_RF, n_jobs=-1, cv=5, scoring=f1_score).fit(X_train, y_train).best_estimator_,
-    GridSearchCV(estimator=GradientBoostingClassifier(),  param_grid=params_GB, n_jobs=-1, cv=5, scoring=f1_score, verbose=0).fit(X_train, y_train).best_estimator_,
-    GridSearchCV(estimator=SVC(), param_grid=params_SVC, n_jobs=-1, cv=5, scoring=f1_score, verbose=0).fit(X_train, y_train).best_estimator_ ,
+    GridSearchCV(estimator=LogisticRegression(), param_grid=params_LR, n_jobs=-1, cv=5, verbose=0).fit(X_train, y_train).best_estimator_,
+    GridSearchCV(estimator=KNeighborsClassifier(), param_grid=params_KNN, n_jobs=-1, cv=5, verbose=0).fit(X_train, y_train).best_estimator_,
+   #GridSearchCV(estimator=RandomForestClassifier(), param_grid=params_RF, n_jobs=-1, cv=5).fit(X_train, y_train).best_estimator_,
+    GridSearchCV(estimator=GradientBoostingClassifier(),  param_grid=params_GB, n_jobs=-1, cv=5, verbose=0).fit(X_train, y_train).best_estimator_,
+    GridSearchCV(estimator=SVC(), param_grid=params_SVC, n_jobs=-1, cv=5, verbose=0).fit(X_train, y_train).best_estimator_ ,
     XGBClassifier(use_label_encoder=False),
     GaussianNB(),
     AdaBoostClassifier()

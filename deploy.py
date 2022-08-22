@@ -12,7 +12,8 @@ def home():
 @app.route('/result', methods=['POST', 'GET'])
 def result():
 
-    # récupérer les veleurs inserées
+    # récupérer les valeurs inserées
+    Name = request.form['Player_name']
     GP = request.form['GP']
     MIN = request.form['MIN']
     PTS = request.form['PTS']
@@ -25,20 +26,27 @@ def result():
     BLK = request.form['BLK']
 
     # transformer les params
-    input_variables = pd.DataFrame([[GP, MIN, PTS, FTM, OREB, DREB, TOV, STL, FG, BLK]],
+    player_params = pd.DataFrame([[GP, MIN, PTS, FTM, OREB, DREB, TOV, STL, FG, BLK]],
                                    columns=['GP', 'MIN', 'PTS', 'FTM', 'OREB', 'DREB', 'TOV', 'STL', 'FG%', 'BLK'],
                                    dtype=float)
+    if Name == '':
+        Name = "This player"
 
     # prédire le résultat
-    prediction = model.predict(input_variables.values)
+    prediction = model.predict(player_params.values)
+
+    # Définition de messages à afficher
+    positif_result = Name + " is worth investing in"
+    negatif_result = Name + " is not worth investing in"
 
     # afficher un message en fonction du résultat
     if int(prediction) == 1:
         return render_template('home.html',
-                                     result="This player is worth investing")
+                                     result=positif_result)
     elif int(prediction) == 0:
         return render_template('home.html',
-                                     result="This player is not worth investing")
+                                     result=negatif_result)
+
 
 
 

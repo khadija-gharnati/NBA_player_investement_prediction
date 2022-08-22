@@ -14,6 +14,11 @@
         <form action='/result' method="POST">
 
             <div class='entry'>
+                <label for="Player_name">Player Name:</label>
+                <input name="Player_name" type="text" value="{{ request.form['Player_name'] }}" >
+            </div>
+
+            <div class='entry'>
                 <label for="GP">Games played:</label>
                 <input name="GP" type="number" step=any value="{{ request.form['GP'] }}" required>
             </div>
