@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>NBA </title>
+</head>
+
+
+<body>
+
+    <h1> Should you or should you not invest?</h1>
+    <h1> Enter player statistics </h1>
+    <div>
+        <form action='/result' method="POST">
+
+            <div class='entry'>
+                <label for="GP">Games played:</label>
+                <input name="GP" type="number" step=any value="{{ request.form['GP'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="MIN">Minutes played:</label>
+                <input name="MIN" type="number" step=any value="{{ request.form['MIN'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="PTS">Points per game:</label>
+                <input name="PTS" type="number" step=any value="{{ request.form['PTS'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="FTM">Field goal percent:</label>
+                <input name="FTM" type="number" step=any value="{{ request.form['FTM'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="OREB">Offensive rebounds:</label>
+                <input name="OREB" type="number" step=any value="{{ request.form['OREB'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="DREB">Deffensive rebounds:</label>
+                <input name="DREB" type="number" value="{{ request.form['DREB'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="TOV">Free throw percent:</label>
+                <input name="TOV" type="number" step=any value="{{ request.form['TOV'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="STL">Steals:</label>
+                <input name="STL" type="number" step=any value="{{ request.form['STL'] }}" required>
+
+            </div>
+
+            <div class='entry'>
+                <label for="FG%">Assists:</label>
+                <input name="FG%" type="number" step=any value="{{ request.form['FG%'] }}" required>
+            </div>
+
+            <div class='entry'>
+                <label for="BLK">Blocks:</label>
+                <input name="BLK" type="number" step=any value="{{ request.form['BLK'] }}" required>
+            </div>
+            <br>
+
+            <input type="submit" value="Go">
+
+        </form>
+    </div>
+    <br>
+    <div class="result" align="center">
+        <br>
+        <br>
+        <p style="font-size:30px">{{ result }}</p>
+    </div>
+
+
+</body>
+
+</html>
