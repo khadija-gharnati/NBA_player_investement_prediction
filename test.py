@@ -153,5 +153,6 @@ print(f'la matrice de confusion = {confusion_mat}')
 
 import joblib
 joblib.dump(model_pipeline, 'Prediction_model')
+print('le modèle a été enregistré avec succés')
 
 
